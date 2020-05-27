@@ -3,17 +3,17 @@
 // @namespace    affanfals - Legend Express Agario Mod
 // @version      1.7
 // @description  Agario Mod - Legend,Ogario,Kitty,Old Skins,Animated Skins,Language Packs,Manual User Scripts,Chat,60++ Macros/Hotkeys(Tricksplit,Doublesplit,Quick Feeding,Popsplit,Auto Coins,Freeze Cell Macro,Auto respawn)
-// @homepage     http://legendmod.ml
+// @homepage     https://legendmod.ml
 // @author       Jimboy3100
 // @license      MIT
 // @icon         https://legendmod.ml/banners/CropedImage128.gif
 // @match        https://agar.io/*
 // @match        https://play.google.com/*
-// @downloadURL  http://legendmod.c1.biz/LMexpress/LMexpress.user.js
-// @updateURL    http://legendmod.c1.biz/LMexpress/LMexpress.user.js
+// @downloadURL  https://affanfals.github.io/LMexpress/LMexpress.user.js
+// @updateURL    https://affanfals.github.io/LMexpress/LMexpress.user.js
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
-// @connect      legendmod.c1.biz
+// @connect      github.com
 // ==/UserScript==
 // https://legendmod.ml/LMexpress/LMexpress.html
 // Legend Mod by Jimboy3100
@@ -37,7 +37,7 @@ document.documentElement.innerHTML = "";
 
 var LMdetails = GM_xmlhttpRequest({
     method: "GET",
-    url: "http://legendmod.c1.biz/LMexpress/LMexpress.html",
+    url: "https://affanfals.github.io/LMexpress/LMexpress.html",
 	synchronous: false,
     onload: function(legend) {
         var doc = inject(legend.responseText);
