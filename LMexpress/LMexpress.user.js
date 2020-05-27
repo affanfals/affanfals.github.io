@@ -13,7 +13,7 @@
 // @updateURL    https://affanfals.github.io/LMexpress/LMexpress.user.js
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
-// @connect      github.com
+// @connect      affanfals.github.io
 // ==/UserScript==
 // https://legendmod.ml/LMexpress/LMexpress.html
 // Legend Mod by Jimboy3100
