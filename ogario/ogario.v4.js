@@ -12168,9 +12168,11 @@ function setGUIEvents() {
 		
 		if ($("#overlays").is(":visible")) {
               $('#overlays').hide();
+			  document.getElementById('openmenu').innerText = 'Open Menu'
 	    } 
 		else {
 			$('#overlays').show();
+			document.getElementById('openmenu').innerText = 'Close Menu'
 		}               
 	})
 	document.getElementById('feedmode').addEventListener('change', function() {
