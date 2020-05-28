@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Legend Mod 
 
-You can use the [editor on GitHub](https://github.com/affanfals/affanfals.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Mod for Agar.io multiplayer action browser game.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![Logo](https://camo.githubusercontent.com/ef21ac672c9b42e4692641d931398cc74d26821f/68747470733a2f2f6a696d626f79333130302e6769746875622e696f2f62616e6e6572732f69636f6e6d6f64332e706e67)
+
+Author: jimboy3100@hotmail.com
+
+Edited by affanfals
+
+### Installation
+For installation see [www.affanfals.github.io](https://affanfals.github.io/)
 
 ### Markdown
+I make a bot stats&control in main window and add feedmode function. If "feedmode" unchecked, only bots that near Usercell will react & follow the mouse. if "feedmode" Checked, all bots will follow the mouse. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+For more features details see [www.legendmod.ml](https://legendmod.ml).
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/affanfals/affanfals.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
