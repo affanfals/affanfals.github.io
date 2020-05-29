@@ -3301,7 +3301,7 @@ function thelegendmodproject() {
             }
         },
         setbotStatsHUD() {
-            defaultmapsettings.showbotStats ? $('#botStats-hud, #botStats-panel-hud').show() : $('#botStats-hud, #botStats-panel-hud').hide();
+            defaultmapsettings.showbotStats ? $('#botStats-panel-hud').show() : $('#botStats-panel-hud').hide();
         },
         setShowTime() {
             defaultmapsettings.showTime = !defaultmapsettings.showTime;
