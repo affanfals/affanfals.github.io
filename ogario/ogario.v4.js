@@ -3290,7 +3290,8 @@ function thelegendmodproject() {
             this.setTargetingHUD();
         },
         setShowbotStats() {
-            defaultmapsettings.showbotStats = !defaultmapsettings.showbotStats, this.setbotStatsHUD();
+            defaultmapsettings.showbotStats = !defaultmapsettings.showbotStats;
+			this.setbotStatsHUD();
         },
         setTargetingHUD() {
             if (defaultmapsettings.showTargeting) {
