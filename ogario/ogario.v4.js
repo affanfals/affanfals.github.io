@@ -3290,10 +3290,15 @@ function thelegendmodproject() {
             this.setTargetingHUD();
         },
         setShowbotStats() {
+			
             defaultmapsettings.showbotStats = !defaultmapsettings.showbotStats;
+			console.error('setTargetingHUD:');
+			console.error(defaultmapsettings.showbotStats);
 			this.setbotStatsHUD();
         },
         setTargetingHUD() {
+			
+			
             if (defaultmapsettings.showTargeting) {
                 $('#target-hud, #target-panel-hud').show();
             } else {
@@ -3301,6 +3306,8 @@ function thelegendmodproject() {
             }
         },
         setbotStatsHUD() {
+			console.error('defaultmapsettings.showbotStats');
+			console.error(defaultmapsettings.showbotStats);
             defaultmapsettings.showbotStats ? $('#botStats-panel-hud').show() : $('#botStats-panel-hud').hide();
         },
         setShowTime() {
