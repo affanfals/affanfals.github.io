@@ -13,6 +13,7 @@ For installation see [https://affanfals.github.io](https://affanfals.github.io/)
 
 ### Feature Highlights
 I made a bot stats&control in main window and add feedmode function. If "feedmode" unchecked, only bots that near to Usercell will react & follow the mouse. if "feedmode" Checked, all bots will follow the mouse. 
+
 ![Capture1](https://raw.githubusercontent.com/affanfals/affanfals.github.io/master/banners/capture1.jpg)
 
 For more features details see [www.legendmod.ml](https://legendmod.ml).
