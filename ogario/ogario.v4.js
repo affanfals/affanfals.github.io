@@ -3309,6 +3309,7 @@ function thelegendmodproject() {
 			console.error('defaultmapsettings.showbotStats');
 			console.error(defaultmapsettings.showbotStats);
             defaultmapsettings.showbotStats ? $('#botStats-panel-hud').show() : $('#botStats-panel-hud').hide();
+			this.setbotStatsHUD();
         },
         setShowTime() {
             defaultmapsettings.showTime = !defaultmapsettings.showTime;
