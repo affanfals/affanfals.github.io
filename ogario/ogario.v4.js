@@ -3292,8 +3292,6 @@ function thelegendmodproject() {
         setShowbotStats() {
 			
             defaultmapsettings.showbotStats = !defaultmapsettings.showbotStats;
-			console.error('setTargetingHUD:');
-			console.error(defaultmapsettings.showbotStats);
 			this.setbotStatsHUD();
         },
         setTargetingHUD() {
@@ -3306,10 +3304,8 @@ function thelegendmodproject() {
             }
         },
         setbotStatsHUD() {
-			console.error('defaultmapsettings.showbotStats');
-			console.error(defaultmapsettings.showbotStats);
             defaultmapsettings.showbotStats ? $('#botStats-panel-hud').show() : $('#botStats-panel-hud').hide();
-			this.setbotStatsHUD();
+			
         },
         setShowTime() {
             defaultmapsettings.showTime = !defaultmapsettings.showTime;
@@ -7217,6 +7213,7 @@ function thelegendmodproject() {
             this.setShowChatBox();
             this.setTop5();
             this.setTargetingHUD();
+			this.setbotStatsHUD();
             this.setQuest();
             this.displayTime();
             this.setCenteredLb();
