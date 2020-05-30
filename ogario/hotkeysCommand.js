@@ -509,7 +509,8 @@
                 label: textLanguage['hk-bots-split'],
                 defaultKey: 'M',
                 keyDown() {
-                    if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([2]).buffer);
+                    if (window.userBots.startedBots) window.connectionBots.send(new Uint8Array([2]).buffer);
+					//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([2]).buffer);
                 },
                 keyUp: null,
                 type: 'normal'
@@ -518,7 +519,8 @@
                 label: textLanguage['hk-bots-feed'],
                 defaultKey: 'L',
                 keyDown() {
-                    if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([3]).buffer)
+                    if (window.userBots.startedBots) window.connectionBots.send(new Uint8Array([3]).buffer)
+					//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([3]).buffer)
                 },
                 keyUp: null,
                 type: 'normal'
@@ -527,7 +529,7 @@
                 label: textLanguage['hk-bots-ai'],
                 defaultKey: 'P',
                 keyDown() {
-                    if (window.userBots.startedBots && window.userBots.isAlive) {
+                    if (window.userBots.startedBots) {// && window.userBots.isAlive) {
                         if (!window.bots.ai) {
                             document.getElementById('botsAI').style.color = '#00C02E'
                             document.getElementById('botsAI').innerText = 'Enabled'
