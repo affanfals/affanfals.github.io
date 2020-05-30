@@ -8784,7 +8784,7 @@ function thelegendmodproject() {
                 view.setUint32(9, this.protocolKey, true);
                 this.sendMessage(view);
             }
-            if (window.userBots.startedBots && window.userBots.isAlive) {
+            if (window.userBots.startedBots){// && window.userBots.isAlive) {
                 window.userBots.mouseX = this.cursorX - window.userBots.offsetX;
                 window.userBots.mouseY = this.cursorY - window.userBots.offsetY;
                 window.connectionBots.send(window.buffers.mousePosition(window.userBots.mouseX, window.userBots.mouseY))
