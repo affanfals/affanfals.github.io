@@ -12,7 +12,20 @@ Edited by affanfals
 For installation see [https://affanfals.github.io](https://affanfals.github.io/)
 
 ### Feature Highlights
-I made a bot stats&control in main window and add feedmode function. If "feedmode" unchecked, only bots that near to Usercell will react & follow the mouse. if "feedmode" Checked, all bots will follow the mouse. 
+I made a Bot stats & control in main window and add feedmode function. 
+
+If "feedmode" unchecked: 
+  - only bots that near to Usercell (radius= 3000) will react & follow the mouse. 
+  
+  
+if "feedmode" Checked:
+  - all bots will follow the mouse.
+  - you can control the bots in spectate mode
+ 
+### Setting
+Enable bot Stats on settings-> Stats-> Bot Stats 
+
+![Capture1](https://raw.githubusercontent.com/affanfals/affanfals.github.io/master/banners/capture2.jpg)
 
 ![Capture1](https://raw.githubusercontent.com/affanfals/affanfals.github.io/master/banners/capture1.jpg)
 
