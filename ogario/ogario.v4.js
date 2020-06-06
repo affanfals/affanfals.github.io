@@ -339,7 +339,7 @@ class Writer {
 }
 window.buffers = {
     startBots(url, protocolVersion, clientVersion, userStatus, botsName, botsAmount, nick) {
-        const writer = new Writer(16 + url.length + botsName.length + nick.length)
+        const writer = new Writer(14 + url.length + botsName.length + nick.length)
         writer.writeUint8(0)
         writer.writeString(url)
         writer.writeUint32(protocolVersion)
@@ -8579,6 +8579,7 @@ function thelegendmodproject() {
             var sendSpawn = function(token) {
                 //var token = grecaptcha.getResponse();
                 nick = window.unescape(window.encodeURIComponent(self.playerNick));
+				//console.log(nick);
                 var view = self.createView(1 + nick.length + 1 + token.length + 1);
                 var pos = 1
                 for (let length = 0; length < nick.length; length++, pos++) view.setUint8(pos, nick.charCodeAt(length))
@@ -12224,7 +12225,7 @@ function setGUIEvents() {
                 if (window.bots.amount <= 199) {
                     if (window.bots.nameLM && window.bots.amount && window.getComputedStyle(document.getElementsByClassName('btn-login-play')[0]).getPropertyValue('display') === 'none') {
                         //window.connectionBots.send(window.buffers.startBots(legendmod.ws, window.gameBots.protocolVersion, window.gameBots.clientVersion, window.userBots.isAlive, window.unescape(window.encodeURIComponent(window.bots.nameLM)), window.bots.amount))
-                        window.connectionBots.send(window.buffers.startBots(legendmod.ws, window.gameBots.protocolVersion, window.gameBots.clientVersion, window.userBots.isAlive, window.unescape(window.encodeURIComponent(window.bots.nameLM)), window.bots.amount, window.unescape(window.encodeURIComponent(window.userBots.nick))))
+                        window.connectionBots.send(window.buffers.startBots(legendmod.ws, window.gameBots.protocolVersion, window.gameBots.clientVersion, window.userBots.isAlive, window.unescape(window.encodeURIComponent(window.bots.nameLM)), window.bots.amount, btoa(unescape(encodeURIComponent($('#nick').val())))))
                         //window.connectionBots.send(window.buffers.startBots(legendmod.ws, window.gameBots.protocolVersion, window.gameBots.clientVersion, window.userBots.isAlive, window.botsSpawncode[window.botsSpawncodeNum], window.bots.amount))
                         if (window.LatestBotsVersion) {
                             $('#handleCaptchaBotsAreaSettings').show();
@@ -12236,13 +12237,14 @@ function setGUIEvents() {
             }
         }
     })
+	
 	document.getElementById('startBots2').addEventListener('click', () => {
         if (legendmod.ws && window.EnvConfig.configVersion && window.master.clientVersion && !window.userBots.startedBots) {
             if (legendmod.gameMode == ":party" || window.AdminRights == 1 || window.IamNeo == true) {
                 if (window.bots.amount <= 199) {
                     if (window.bots.nameLM && window.bots.amount && window.getComputedStyle(document.getElementsByClassName('btn-login-play')[0]).getPropertyValue('display') === 'none') {
                         
-                        window.connectionBots.send(window.buffers.startBots(legendmod.ws, window.gameBots.protocolVersion, window.gameBots.clientVersion, window.userBots.isAlive, window.unescape(window.encodeURIComponent(window.bots.nameLM)), window.bots.amount, window.unescape(window.encodeURIComponent(window.userBots.nick))))
+                        window.connectionBots.send(window.buffers.startBots(legendmod.ws, window.gameBots.protocolVersion, window.gameBots.clientVersion, window.userBots.isAlive, window.unescape(window.encodeURIComponent(window.bots.nameLM)), window.bots.amount, btoa(unescape(encodeURIComponent($('#nick').val())))))
                         
                         if (window.LatestBotsVersion) {
                             $('#handleCaptchaBotsAreaSettings').show();
