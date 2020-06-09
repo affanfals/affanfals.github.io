@@ -408,12 +408,12 @@ window.connectionBots = {
         }
 		if ($('#feedmode').is(':checked')) {
 			window.bots.feedmode = true
-			window.connectionBots.send(new Uint8Array([8, Number(window.bots.feedmode)]).buffer)
+			window.connectionBots.send(new Uint8Array([23, Number(window.bots.feedmode)]).buffer)
 			//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([8]).buffer);
 			console.log('feedmode: on');
 		} else {
 			window.bots.feedmode = false
-			window.connectionBots.send(new Uint8Array([9, Number(window.bots.feedmode)]).buffer)
+			window.connectionBots.send(new Uint8Array([24, Number(window.bots.feedmode)]).buffer)
 			//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([9]).buffer);
 			console.log('feedmode: off');
 		}
@@ -461,6 +461,7 @@ window.connectionBots = {
                 document.getElementById('stopBots2').innerText = 'stopBots'
                 window.userBots.startedBots = false  
                 window.bots.ai = false
+				window.bots.freeze = false
                 break
             case 3:
                 //toastr.info('Your IP has captcha and bots are unable to spawn, change your ip with a VPN or something to one that doesn\'t has captcha in order to use the bots')
@@ -513,6 +514,7 @@ window.connectionBots = {
         document.getElementById('connectBots').style.color = 'white'
         window.userBots.startedBots = false
         window.bots.ai = false
+		window.bots.freeze = false
         window.LatestBotsVersion = null;
         $('#handleCaptchaBotsArea').hide();
         $('#handleCaptchaBotsAreaSettings').hide();
@@ -969,7 +971,11 @@ var displayText = {
         'hk-inst-delete': 'Aby usunąć skrót klawiszowy kliknij na polu skrótu i naciśnij klawisz DELETE.',
         'hk-inst-keys': 'Możliwe kombinacje skrótów klawiszowych z użyciem klawiszy CTRL oraz ALT.',
         'hk-bots-split': 'Bots split',
+        'hk-bots-doubleSplit': 'Bots Double Split',
+        'hk-bots-split16': 'Bots split 16',
         'hk-bots-feed': 'Bots feed',
+        'hk-bots-freeze': 'Bots freeze',
+        'hk-bots-macroFeed': 'Bots Macro Feed',
         'hk-bots-ai': 'Bots AI toggle',
         'hk-feed': 'Feed',
         'hk-macroFeed': 'Szybki feed',
@@ -1391,7 +1397,11 @@ var displayText = {
         'hk-inst-delete': 'To delete a hotkey click on the input field and press the DELETE key.',
         'hk-inst-keys': 'Possible key combinations with the CTRL and ALT keys.',
         'hk-bots-split': 'Bots split',
+        'hk-bots-doubleSplit': 'Bots Double Split',
+        'hk-bots-split16': 'Bots split 16',
         'hk-bots-feed': 'Bots feed',
+        'hk-bots-freeze': 'Bots freeze',
+        'hk-bots-macroFeed': 'Bots Macro Feed',
         'hk-bots-ai': 'Bots AI toggle',
         'hk-feed': 'Feed',
         'hk-macroFeed': 'Macro feed',
@@ -3240,6 +3250,21 @@ function thelegendmodproject() {
                 this.feedInterval = null
             };
         },
+        botsMacroFeed(on) {
+			if (window.userBots.startedBots){
+				if (on) {
+					if (this.feedInterval) return;
+					//var app = this;
+					window.connectionBots.send(new Uint8Array([3]).buffer);
+						this.feedInterval = setInterval(function() {
+							 window.connectionBots.send(new Uint8Array([3]).buffer);
+						}, defaultmapsettings.macroFeeding);
+				} else if (this.feedInterval) {
+					clearInterval(this.feedInterval);
+					this.feedInterval = null
+				};
+			}
+        },
         split() {
             if (window.core && window.core.split) window.core.split();
         },
@@ -4539,7 +4564,7 @@ function thelegendmodproject() {
                     '<a href="#" id="set-private-minimap" class="ogicon-location2"></a>' +
                     '<a href="#" id="cancel-targeting" class="ogicon-cancel-circle"></a>' +
                     '<a href="#" id="change-target" class="ogicon-arrow-right"></a></div>' +
-                    '<div id="quest-hud" class="hud"></div> <div id="btl-hud" class="hud"></div><div id="botStats-panel-hud" class="hud"><div id="botClient2" style="margin-left: 5px;margin-right: 5px;font-family: Tahoma;color: rgb(255, 255, 255);z-index: 9999;border-radius: 5px;min-height: 16px;background-color: rgba(0, 0, 0, 0);"><div> <b> Bot Count </b> : <span id="botCount2"> Waiting </span> || <b> Bots AI: </b> <span id="botsAI2"> Disabled </span></div><div><b> Status: </b> <span id="userStatus2" style="color: rgb(218, 10, 0);">Disconnected</span><button type="button" style="background-color:grey;" id="connectBots2"> Connect </button><button type="button" style="background-color:grey;" id="startBots2" disabled> startBots </button><button type="button" style="background-color:grey;display:none;" id="stopBots2"> stopBots </button></div><div> <input type="checkbox" id="feedmode"> feedmode <button type="button" style="background-color:grey;" id="resetbot"> reset </button> || <button type="button" style="background-color:grey;" id="openmenu"> »Menu« </button></div></div></div></div>');
+                    '<div id="quest-hud" class="hud"></div> <div id="btl-hud" class="hud"></div><div id="botStats-panel-hud" class="hud"><div id="botClient2" style="margin-left: 5px;margin-right: 5px;font-family: Tahoma;color: rgb(255, 255, 255);z-index: 9999;border-radius: 5px;min-height: 16px;background-color: rgba(0, 0, 0, 0);"><div> <b> Bot Count </b> : <span id="botCount2">0 </span> || <b> Bots AI: </b> <span id="botsAI2"> Disabled </span>| <span id="botFreeze" style="color: rgb(103, 255, 122);display: none;">Freeze!</span></div><div><b> Status: </b> <span id="userStatus2" style="color: rgb(218, 10, 0);">Disconnected</span><button type="button" style="background-color:grey;" id="connectBots2"> Connect </button><button type="button" style="background-color:grey;" id="startBots2" disabled> startBots </button><button type="button" style="background-color:grey;display:none;" id="stopBots2"> stopBots </button></div><div> <input type="checkbox" id="feedmode"> feedmode <button type="button" style="background-color:grey;" id="resetbot"> reset </button> || <button type="button" style="background-color:grey;" id="openmenu"> »Menu« </button></div></div></div></div>');
                 $("body").append('<ul id="messages"></ul>');
                 $("body").append('<div id="message-box"><div id="chat-emoticons"></div><div id="message-menu"><a href="#" class="chat-sound-notifications ogicon-volume-high"></a><a href="#" class="chat-active-users ogicon-user-check"></a><a href="#" class="chat-muted-users ogicon-user-minus"></a><a href="#" class="show-chat-emoticons ogicon-smile"></a></div><input type="text" id="message" class="form-control" placeholder="' +
                     textLanguage.enterChatMsg + '..." maxlength="80"></div>');
@@ -12174,7 +12199,7 @@ function setGUIEvents() {
     })
 	document.getElementById('resetbot').addEventListener('click', () => {//window.userBots.isAlive = true
 		if (window.connectionBots.ws) {
-			window.connectionBots.send(new Uint8Array([7]).buffer);//if (window.userBots.startedBots && window.userBots.isAlive) //window.connectionBots.send(new Uint8Array([2]).buffer)
+			window.connectionBots.send(new Uint8Array([22]).buffer);//if (window.userBots.startedBots && window.userBots.isAlive) //window.connectionBots.send(new Uint8Array([2]).buffer)
 			
 			
 		} 
@@ -12196,12 +12221,12 @@ function setGUIEvents() {
 	document.getElementById('feedmode').addEventListener('change', function() {
 		if ($('#feedmode').is(':checked')) {
 			window.bots.feedmode = true
-			window.connectionBots.send(new Uint8Array([8, Number(window.bots.feedmode)]).buffer)
+			window.connectionBots.send(new Uint8Array([23, Number(window.bots.feedmode)]).buffer)
 			//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([8]).buffer);
 			console.log('feedmode: on');
 		} else {
 			window.bots.feedmode = false
-			window.connectionBots.send(new Uint8Array([9, Number(window.bots.feedmode)]).buffer)
+			window.connectionBots.send(new Uint8Array([24, Number(window.bots.feedmode)]).buffer)
 			//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([9]).buffer);
 			console.log('feedmode: off');
 		}

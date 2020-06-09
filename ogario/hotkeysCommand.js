@@ -259,7 +259,7 @@
             },
             'hk-toggleDeath': {
                 label: textLanguage['hk-toggleDeath'],
-                defaultKey: 'X',
+                defaultKey: 'CTRL+X',
                 keyDown() {
                     application && application.toggleDeath();
                 },
@@ -268,7 +268,7 @@
             },
             'hk-clearChat': {
                 label: textLanguage['hk-clearChat'],
-                defaultKey: 'C',
+                defaultKey: 'CTRL+C',
                 keyDown() {
                     application && application.displayChatHistory(!0);
                 },
@@ -515,6 +515,44 @@
                 keyUp: null,
                 type: 'normal'
             },
+            'hk-bots-split16': {
+                label: textLanguage['hk-bots-split16'],
+                defaultKey: '',
+                keyDown() {
+                    if (window.userBots.startedBots) window.connectionBots.send(new Uint8Array([21]).buffer);
+					//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([2]).buffer);
+                },
+                keyUp: null,
+                type: 'normal'
+            },
+            'hk-bots-doubleSplit': {
+                label: textLanguage['hk-bots-doubleSplit'],
+                defaultKey: '',
+                keyDown() {
+                    if (window.userBots.startedBots) window.connectionBots.send(new Uint8Array([25]).buffer);
+                },
+                keyUp: null,
+                type: 'normal'
+            },
+            'hk-bots-freeze': {
+                label: textLanguage['hk-bots-freeze'],
+                defaultKey: '',
+                keyDown() {
+					if (window.userBots.startedBots) {// && window.userBots.isAlive) {
+                        if (!window.bots.freeze) {
+							$('#botFreeze').show();
+                            window.bots.freeze = true
+                            window.connectionBots.send(new Uint8Array([26, Number(window.bots.freeze)]).buffer)
+                        } else {
+							$('#botFreeze').hide();
+                            window.bots.freeze = false
+                            window.connectionBots.send(new Uint8Array([26, Number(window.bots.freeze)]).buffer)
+                        }
+                    }
+                },
+                keyUp: null,
+                type: 'normal'
+            },
             'hk-bots-feed': {
                 label: textLanguage['hk-bots-feed'],
                 defaultKey: 'L',
@@ -523,6 +561,17 @@
 					//if (window.userBots.startedBots && window.userBots.isAlive) window.connectionBots.send(new Uint8Array([3]).buffer)
                 },
                 keyUp: null,
+                type: 'normal'
+            },
+            'hk-bots-macroFeed': {
+                label: textLanguage['hk-bots-macroFeed'],
+                defaultKey: '',
+                keyDown() {
+                    application && application.botsMacroFeed(!0);
+                },
+                keyUp() {
+                    application && application.botsMacroFeed(!1);
+                },
                 type: 'normal'
             },
             'hk-bots-ai': {
